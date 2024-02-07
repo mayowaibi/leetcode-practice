@@ -1,15 +1,16 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        map = {'}': '{', ')': '(', ']': '['} # opening bracket : closing bracket
-        stack = []
+        validChars = {')':'(', '}':'{', ']':'['}
+        stack = list()
 
-        for c in s:
-            if c in map:
-                if len(stack) != 0 and map[c] == stack[-1]:
+        for char in s:
+            if char in validChars:
+                # if the char pairs with the char at the top of the stack and the stack is not empty
+                if stack and validChars[char] == stack[-1]:
                     stack.pop()
                 else:
                     return False
+            # add char to stack if it's an opening char
             else:
-                stack.append(c)
-        
-        return not stack # return stack.isEmpty()
+                stack.append(char)
+        return not stack # stack.isEmpty()
