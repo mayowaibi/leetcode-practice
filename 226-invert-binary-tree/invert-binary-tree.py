@@ -6,14 +6,14 @@
 #         self.right = right
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        # recursive solution
+        # base case
         if not root:
             return None
         
-        temp = root.left
-        root.left = root.right
-        root.right = temp
+        # at each level of recursion, simply swap left and right children
+        root.left, root.right = root.right, root.left
 
+        # repeat the same process for each subtree then return original root
         self.invertTree(root.left)
         self.invertTree(root.right)
         return root
