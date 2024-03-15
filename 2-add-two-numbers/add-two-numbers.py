@@ -5,25 +5,25 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode()
-        curr = dummy
+        dummyNode = ListNode()
+        curr = dummyNode
+        carry = 0       # to store any value that needs to be carried to the next node
 
-        carry = 0
         while l1 or l2 or carry:
+            # v1 and v2 are the corresponding values from each linked list
+            # set to 0 if any of the linked lists are null
             v1 = l1.val if l1 else 0
             v2 = l2.val if l2 else 0
 
             sum = v1 + v2 + carry
-            # carry is the value to be carried to the next position if sum > 10
-            carry = sum // 10
-            # sum holds the one-digit sum of v1 and v2 (with carry holding the other digit, if any)
-            sum = sum % 10
-            # add the new sum node to the new list
-            curr.next = ListNode(sum)
-        
-            # update pointers
+            carry = sum // 10       # to get the carry digit if sum > 10
+            sum = sum % 10      # to ensure sum only holds the unit place value of v1+v2+carry
+            
+            curr.next = ListNode(sum)       # add the new initialized sum node to the list
+
+            # update all pointers
             curr = curr.next
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
-
-        return dummy.next   
+        
+        return dummyNode.next       # return the entire list
