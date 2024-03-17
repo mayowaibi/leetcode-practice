@@ -1,30 +1,29 @@
 class Solution:
     # Binary Search Solution: TC: O(log m * n)
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        ROWS, COLS = len(matrix), len(matrix[0])
         # separate binary searches, first on the entire matrix to find
         # the corresponding row, then on the row to find the target
+        ROWS, COLS = len(matrix), len(matrix[0])
+
+        # first binary search
         top, bot = 0, ROWS - 1
-
         while top <= bot:
-            row = (top + bot) // 2
-            if target > matrix[row][-1]:
-                top = row + 1
-            elif target < matrix[row][0]:
-                bot = row - 1
-            else:
+            midRow = top + ((bot - top) // 2)
+            if target > matrix[midRow][-1]:
+                top = midRow + 1
+            elif target < matrix[midRow][0]:
+                bot = midRow - 1
+            else:   # target is in the current midRow
                 break
-
-        if not (top <= bot):
-            return False
-        row = (top + bot) // 2
+        
+        # second binary search
         l, r = 0, COLS - 1
         while l <= r:
-            m = (l + r) // 2
-            if target > matrix[row][m]:
-                l = m + 1
-            elif target < matrix[row][m]:
-                r = m - 1
+            midVal = l + ((r - l) // 2)
+            if target > matrix[midRow][midVal]:
+                l = midVal + 1
+            elif target < matrix[midRow][midVal]:
+                r = midVal - 1
             else:
                 return True
 
