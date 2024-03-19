@@ -5,7 +5,7 @@ class KthLargest:
         # creating a minHeap to store the k largest integers
         # to ensure the heap's root is automatically the kth largest element
         self.minHeap, self.k = nums, k
-        heapq.heapify(self.minHeap)
+        heapq.heapify(self.minHeap) # creating the heap has an O(n) TC
         while len(self.minHeap) > k:
             heapq.heappop(self.minHeap)
 
