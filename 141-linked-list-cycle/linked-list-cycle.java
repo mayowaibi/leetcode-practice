@@ -10,16 +10,16 @@
  * }
  */
 public class Solution {
-    // HashSet implementation
     public boolean hasCycle(ListNode head) {
-        Set<ListNode> visited = new HashSet<>();
-        ListNode curr = head;
-        while (curr != null && curr.next != null) {
-            if (visited.contains(curr)) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (fast == slow) {
                 return true;
             }
-            visited.add(curr);
-            curr = curr.next;
         }
         return false;
     }
