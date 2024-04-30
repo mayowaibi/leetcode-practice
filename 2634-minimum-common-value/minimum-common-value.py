@@ -1,6 +1,6 @@
 class Solution:
+    # Two-Pointer Solution - TC: O(nums1 + nums2), SC: O(1)
     def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
-        minimum = -1
         i, j = 0, 0
 
         while i < len(nums1) and j < len(nums2):
@@ -9,10 +9,7 @@ class Solution:
             elif nums1[i] > nums2[j]:
                 j += 1
             else:
-                # if no min val from arrays has been set, replace min with the first matching val
-                # if min val has been set from arrays, replace min with min of old min and current val
-                minimum = nums1[i] if minimum <= 0 else min(minimum, nums1[i])
-                i += 1
-                j += 1
+                # first matching val will be smallest val in both arrays since they are in non-decreasing order
+                return nums1[i]
 
-        return minimum
+        return -1
