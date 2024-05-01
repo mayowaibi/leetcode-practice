@@ -2,7 +2,7 @@ class Solution:
     # Basic Loop with Counter Variables - TC: O(n), SC: O(1)
     def totalMoney(self, n: int) -> int:
         result = 0
-        # count is used to signal a new week, i is the value to be added to result
+        # count represents the current week, i is the value to be added to result
         count, i = 1, 1
 
         for x in range(n):
