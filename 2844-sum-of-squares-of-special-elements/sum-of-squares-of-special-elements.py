@@ -6,6 +6,6 @@ class Solution:
         for i, n in enumerate(nums):
             j = i + 1
             if length % j == 0:
-                result += nums[i] * nums[i]
+                result += n ** 2
         
         return result
