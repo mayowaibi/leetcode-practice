@@ -4,9 +4,7 @@ class Solution:
         result = []
 
         # Create a char counter hashmap for the first word
-        hashmap = {}
-        for c in words[0]:
-            hashmap[c] = hashmap.get(c, 0) + 1
+        hashmap = Counter(words[0])
         
         # For every other word in words, get the min no. of
         # occurences for each char in the first word
