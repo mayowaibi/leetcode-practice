@@ -1,4 +1,5 @@
 class Solution:
+    # Array Traversal Solution - TC: O(n^2), SC: O(n)
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
         result = []
 
