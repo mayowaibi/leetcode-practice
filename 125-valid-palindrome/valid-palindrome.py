@@ -1,6 +1,15 @@
 class Solution:
-    # OG Solution
+    # Shorter Solution - TC: O(n), SC: O(n)
     def isPalindrome(self, s: str) -> bool:
+        new = ''
+
+        for c in s:
+            if c.isalnum():
+                new += c.lower()
+        return new == new[::-1]
+
+    # Two Pointer Solution - TC: O(n), SC: O(n)
+    def isPalindrome2(self, s: str) -> bool:
         l, r = 0, len(s) - 1
         
         while l < r:
