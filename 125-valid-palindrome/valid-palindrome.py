@@ -1,4 +1,5 @@
 class Solution:
+    # OG Solution
     def isPalindrome(self, s: str) -> bool:
         l, r = 0, len(s) - 1
         
