@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.next = next
 class Solution:
+    # TC: O(n+m), SC: O(1)
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummyNode = ListNode()  # to initialize the linked list that will be returned
         tail = dummyNode    # to keep track of the tail (current value) at all points in the loop
