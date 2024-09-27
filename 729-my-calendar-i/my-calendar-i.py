@@ -1,10 +1,42 @@
+class Tree:
+    def __init__(self, start, end):
+        self.left, self.right = None, None
+        self.start, self.end = start, end
+    
+    def insert(self, start, end):
+        curr = self
+        while True:
+            if start >= curr.end:
+                if not curr.right:
+                    curr.right = Tree(start, end)
+                    return True
+                curr = curr.right
+            elif end <= curr.start:
+                if not curr.left:
+                    curr.left = Tree(start, end)
+                    return True
+                curr = curr.left
+            else:
+                return False
+                
 class MyCalendar:
 
     def __init__(self):
-        self.calendar = []
+        self.root = None # for solution 1
+        self.calendar = [] # for solutions 2 and 3
+
+    # Binary Search Tree Solution - TC: O(logn), SC: O(n)
+    def book(self, start: int, end: int) -> bool:
+        # If root does not exist, create it and return true
+        if not self.root:
+            self.root = Tree(start, end)
+            return True
+
+        return self.root.insert(start, end)
+
 
     # Binary Search Implementation - SC: O(logn), TC: O(n)
-    def book(self, start: int, end: int) -> bool:
+    def book1(self, start: int, end: int) -> bool:
         left, right = 0, len(self.calendar)
 
         if right == 0:
@@ -28,7 +60,7 @@ class MyCalendar:
             
         return False
         
-    # Basic List Traversal - SC: O(n), TC: O(n)
+    # Basic List Traversal - TC: O(n), SC: O(n)
     def book2(self, start: int, end: int) -> bool:
 
         # Check for overlap with existing events
