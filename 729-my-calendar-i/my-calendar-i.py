@@ -1,30 +1,18 @@
 class MyCalendar:
 
     def __init__(self):
-        # Initialize an empty list to store the events
-        self.events = []
-        
-    # Basic List Traversal - SC: O(n), TC: O(n)
-    def book(self, start: int, end: int) -> bool:
-        # Check for overlap with existing events
-        for s, e in self.events:
-            # If the new event overlaps with any existing event
-            if not (end <= s or start >= e):  # No overlap condition: (new_end <= old_start) or (new_start >= old_end)
-                return False
-        # If no overlap, add the event
-        self.events.append((start, end))
-        return True
+        self.calendar = []
 
     # Binary Search Implementation - SC: O(logn), TC: O(n)
-    def book1(self, start: int, end: int) -> bool:
-        right = len(self.calendar)
+    def book(self, start: int, end: int) -> bool:
+        left, right = 0, len(self.calendar)
+
         if right == 0:
             self.calendar.append((start, end))
             return True
 
-        left = 0
         while left < right:
-            mid = int(left + (right - left)/2)
+            mid = (right - left) // 2 + left
             if self.calendar[mid][1] <= start:
                 left = mid + 1
             else:
@@ -39,6 +27,19 @@ class MyCalendar:
             return True
             
         return False
+        
+    # Basic List Traversal - SC: O(n), TC: O(n)
+    def book2(self, start: int, end: int) -> bool:
+
+        # Check for overlap with existing events
+        for s, e in self.calendar:
+            # If the new event overlaps with any existing event, return False
+            if start < e and end > s:
+                return False
+
+        # If no overlap, add the event
+        self.calendar.append((start, end))
+        return True
 
 # Your MyCalendar object will be instantiated and called as such:
 # obj = MyCalendar()
