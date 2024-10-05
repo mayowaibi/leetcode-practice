@@ -1,21 +1,21 @@
 class Solution {
+    // Hashmap Solution - TC: O(n), SC: O(26*2) -> O(1)
     public boolean isAnagram(String s, String t) {
-        Map<Character, Integer> letters1 = new HashMap<>(); // letter : no. of occurences
-        for (int i = 0; i < s.length(); i++) {
-            if (letters1.containsKey(s.charAt(i))){
-                letters1.put(s.charAt(i), letters1.get(s.charAt(i))+1);
-            } else {
-                letters1.put(s.charAt(i), 1);
-            }
+        if (s.length() != t.length()) {
+            return false;
         }
-        Map<Character, Integer> letters2 = new HashMap<>(); // letter : no. of occurences
-        for (int i = 0; i < t.length(); i++) {
-            if (letters2.containsKey(t.charAt(i))){
-                letters2.put(t.charAt(i), letters2.get(t.charAt(i))+1);
-            } else {
-                letters2.put(t.charAt(i), 1);
-            }
+
+        Map<Character, Integer> map1 = new HashMap<>();
+        Map<Character, Integer> map2 = new HashMap<>();
+
+        for (char c : s.toCharArray()) {
+            map1.put(c, map1.getOrDefault(c, 0) + 1);
         }
-        return letters1.equals(letters2);
+
+        for (char c : t.toCharArray()) {
+            map2.put(c, map2.getOrDefault(c, 0) + 1);
+        }
+
+        return map1.equals(map2);        
     }
 }
