@@ -14,6 +14,7 @@
  * }
  */
 class Solution {
+    // Recursive Solution - TC: O(n), SC: O(n) [Could be O(logn) if tree is balanced]
     public TreeNode invertTree(TreeNode root) {
         if (root == null) return root;
 
