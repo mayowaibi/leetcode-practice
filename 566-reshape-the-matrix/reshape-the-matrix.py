@@ -1,14 +1,8 @@
 class Solution:
     def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
-        """ 
-        given a matrix of m * n
-        reshape it to r * c
-        """
-        # if reshape is not valid, we return the original matrix
-        # in example 2, it shows that 
-        # the reshape r * c is valid only if r * c == m * n
-        # right of the start, we can check if r * c == m * n
-        if r * c != len(mat) * len(mat[0]):
+        ROWS, COLS = len(mat), len(mat[0])
+        # if reshape is not valid, return the original matrix
+        if r * c != ROWS * COLS:
             return mat
         
         # if r * c is valid we simply build the new matrix
@@ -18,8 +12,8 @@ class Solution:
         row = []
 
         # we know the matrix is always 2d, we can use nested for loop
-        for i in range(len(mat)):
-            for j in range(len(mat[0])):
+        for i in range(ROWS):
+            for j in range(COLS):
                 # here we are getting the numbers in order
                 # check if the row is the size of c (column)
                 if len(row) >= c:
