@@ -7,11 +7,11 @@ class Solution:
         left, right = 1, n
 
         while left <= right:
-            version = left + (right - left) // 2
+            mid = left + (right - left) // 2
 
-            if isBadVersion(version):
-                right = version - 1
+            if isBadVersion(mid):
+                right = mid - 1
             else:
-                left = version + 1
+                left = mid + 1
 
         return left
