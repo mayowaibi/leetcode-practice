@@ -1,5 +1,5 @@
 class Solution:
-    # Counter Solution - TC: O(n), SC: O(n)
+    # Counter Solution - TC: O(n*k) where n=unique elements in nums, SC: O(n)
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         num_counter = Counter(nums)
 
