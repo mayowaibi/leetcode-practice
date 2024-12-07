@@ -1,0 +1,12 @@
+class Solution:
+    # TC: O(n), SC: O(1)
+    def finalValueAfterOperations(self, operations: List[str]) -> int:
+        x = 0
+
+        for op in operations:
+            if op[0] == "-" or op[-1] == "-":
+                x -= 1
+            else:
+                x += 1
+
+        return x
