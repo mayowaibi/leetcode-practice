@@ -1,5 +1,6 @@
 class Solution:
-    # Recursive Backtracking Solution - TC: O(2^t), SC: O(t/d) where t is the target
+    # Recursive Backtracking Solution
+    # TC: O(2^n) where n is len(candidates), SC: O(t/min(candidates)) where t is the target
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
 
