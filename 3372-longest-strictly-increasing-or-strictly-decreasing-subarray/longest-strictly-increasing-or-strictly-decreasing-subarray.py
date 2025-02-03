@@ -1,24 +1,22 @@
 class Solution:
+    # TC: O(n), SC: O(1)
     def longestMonotonicSubarray(self, nums: List[int]) -> int:
-        longestinc, longestdec = 0, 0
-        currleninc = 1
+        res = 1
+        incCount = decCount = 1
 
         for i in range(len(nums)-1):
+            # strictly increasing
             if nums[i] < nums[i+1]:
-                currleninc += 1
+                incCount += 1
+                decCount = 1
+            # strictly decreasing
+            elif nums[i] > nums[i+1]:
+                decCount += 1
+                incCount = 1
+            # equal
             else:
-                longestinc = max(longestinc, currleninc)
-                currleninc = 1
+                incCount = decCount = 1
+            
+            res = max(res, incCount, decCount)
 
-        currlendec = 1
-        for i in range(len(nums)-1):
-            if nums[i] > nums[i+1]:
-                currlendec += 1
-            else:
-                longestdec = max(longestdec, currlendec)
-                currlendec = 1
-        
-        longestinc = max(longestinc, currleninc)
-        longestdec = max(longestdec, currlendec)
-
-        return max(longestinc, longestdec)
+        return res
