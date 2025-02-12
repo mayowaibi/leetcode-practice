@@ -1,11 +1,21 @@
 class Solution:
     # Hashmap Solution - TC: O(n), SC: O(n)
     def maximumSum(self, nums: List[int]) -> int:
+        # method to calc sum of all digits in a given num
+        def digitSum(num: int) -> int:
+            res = 0
+            while num > 0:
+                res += num % 10
+                num //= 10
+            return res
+
         digit_sums = {}  # key = sum of digits, value = largest num with the sum
         res = -1
 
         for num in nums:
-            digit_sum = sum(int(d) for d in str(num))
+            # digit_sum = sum(int(d) for d in str(num))
+            # pythonic way to get sum of digits ^^^
+            digit_sum = digitSum(num)
 
             if digit_sum in digit_sums:
                 curr_sum = digit_sums[digit_sum] + num
