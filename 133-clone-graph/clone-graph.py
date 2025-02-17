@@ -18,12 +18,12 @@ class Solution:
         q = deque([node])
 
         while q:
-            cur = q.popleft()
-            for neighbor in cur.neighbors:
+            curr = q.popleft()
+            for neighbor in curr.neighbors:
                 if neighbor not in oldToNew:
                     oldToNew[neighbor] = Node(neighbor.val)
                     q.append(neighbor)
-                oldToNew[cur].neighbors.append(oldToNew[neighbor])
+                oldToNew[curr].neighbors.append(oldToNew[neighbor])
 
         return oldToNew[node]
     
