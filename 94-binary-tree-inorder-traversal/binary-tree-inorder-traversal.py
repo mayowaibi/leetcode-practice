@@ -5,31 +5,32 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    # Iterative Solution
+    # Iterative Solution - TC: O(n), SC:O(n)
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        result, stack = [], []
+        res, stack = [], []
         curr = root
 
         while curr or stack:
-            while curr:
+            while curr: # traverse left subtree
                 stack.append(curr)
                 curr = curr.left
 
-            curr = stack.pop()
-            result.append(curr.val)
-            curr = curr.right
-            
-        return result
+            curr = stack.pop()  # process current node
+            res.append(curr.val)
+            curr = curr.right   # move to right subtree
 
-    # Recursive Solution
+        return res
+
+    # Recursive Solution - TC: O(n), SC:O(n)
     def inorderTraversal2(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
-        self.inorder(root, result)
-        return result
-    
-    def inorder(self, node: Optional[TreeNode], result: List[int]) -> None:
-        if not node:
-            return
-        self.inorder(node.left, result)
-        result.append(node.val)
-        self.inorder(node.right, result)
+        res = []
+
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            res.append(node.val)
+            dfs(node.right)
+
+        dfs(root)
+        return res
