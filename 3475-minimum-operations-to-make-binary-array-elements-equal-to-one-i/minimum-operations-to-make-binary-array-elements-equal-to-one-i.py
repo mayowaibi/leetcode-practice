@@ -8,7 +8,7 @@ class Solution:
             # flip 3 consecutive bits as soon as a 0 is found
             if nums[i] == 0:
                 for j in range(3):
-                    nums[i+j] = 0 if nums[i+j] == 1 else 1
+                    nums[i+j] ^= 1
                 num_flips += 1
 
         # check if last 2 bits are 0 to know if it is impossible for given nums
