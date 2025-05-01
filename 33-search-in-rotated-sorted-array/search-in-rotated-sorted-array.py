@@ -1,4 +1,5 @@
 class Solution:
+    # Binary Search Solution - TC: O(logn), SC: O(1)
     def search(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums) - 1
 
@@ -24,4 +25,12 @@ class Solution:
                 # else, search left-sorted portion
                 else:
                     right = mid - 1
+        return -1
+
+    # Linear Search Solution - TC: O(n), SC: O(1)
+    def search2(self, nums: List[int], target: int) -> int:
+        for i, n in enumerate(nums):
+            if n == target:
+                return i
+
         return -1
