@@ -1,45 +1,62 @@
 class Solution:
-    # Merge Sort Solution - TC: O(nlogn), SC: O(n)
+    # TC: O(nlogn), SC: O(n) - All Solutions (Average Case)
     def sortArray(self, nums: List[int]) -> List[int]:
-        self.mergeSort(nums, 0, len(nums) - 1)
-        return nums
+        return self.mergeSort(nums)
 
-    def merge(self, array: List[int], left: int, mid: int, right: int) -> None:
-        n = mid - left + 1
-        m = right - mid
+    # 1 - Merge Sort 
+    def mergeSort(self, arr):
+        n = len(arr)
+        if n <= 1:
+            return arr
+        
+        mid = n // 2
+        L = arr[:mid]
+        R = arr[mid:]
 
-        L = array[left:left + n]
-        R = array[mid + 1:mid + 1 + m]
+        L = self.mergeSort(L)
+        R = self.mergeSort(R)
 
-        i = 0
-        j = 0
-        k = left
+        return self.merge(L, R)
+    
+    # Merge - TC: O(n), SC: O(n)
+    def merge(self, left, right):
+        i = j = 0
+        result = []
 
-        while i < n and j < m:
-            if L[i] <= R[j]:
-                array[k] = L[i]
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                result.append(left[i])
                 i += 1
             else:
-                array[k] = R[j]
+                result.append(right[j])
                 j += 1
-            
-            k += 1
+        
+        result.extend(left[i:])
+        result.extend(right[j:])
 
-        while i < n:
-            array[k] = L[i]
-            i += 1
-            k += 1
+        return result
 
-        while j < m:
-            array[k] = R[j]
-            j += 1
-            k += 1
+    # 2 - Quick Sort
+    def quickSort(self, arr):
+        if len(arr) <= 1:
+            return arr
 
-    def mergeSort(self, array: List[int], left: int, right: int) -> None:
-        if left < right:
-            mid = (left + right) // 2
+        pivot = arr[-1]
+        L = [v for v in arr[:-1] if v <= pivot]
+        R = [v for v in arr[:-1] if v > pivot]
 
-            self.mergeSort(array, left, mid)
-            self.mergeSort(array, mid + 1, right)
+        L = self.quickSort(L)
+        R = self.quickSort(R)
 
-            self.merge(array, left, mid, right)
+        return L + [pivot] + R
+
+    # 3 - Heap Sort
+    def heapSort(self, arr):
+        n = len(nums)
+        heapq.heapify(nums)
+        result = []
+
+        for _ in range(n):
+            result.append(heapq.heappop(nums))
+
+        return result
