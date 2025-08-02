@@ -1,12 +1,25 @@
 class Solution:
-    # "Dynamic Programming Solution" - TC: O(n^2), SC: O(n^2)
+    # Iterative "DP" Solution - TC: O(n^2), SC: O(1) not counting output
     def generate(self, numRows: int) -> List[List[int]]:
         res = [[1]]
+
         for i in range(2, numRows+1):
-            res.append([1] + [res[-1][j] + res[-1][j+1] for j in range(i-2)] + [1])
+            prev_row = res[-1]
+            # first value is always 1
+            new_row = [1]
+
+            # add the middle numbers
+            for j in range(1, i-1):
+                new_row.append(prev_row[j-1] + prev_row[j])
+
+            # last value is always 1
+            new_row.append(1)
+
+            res.append(new_row)
+            
         return res
 
-    # Inefficient Recursive Solution - TC: O(n^3), SC: n^2
+    # Inefficient Recursive Solution - TC: O(n^3), SC: O(n^2)
     def generate2(self, numRows: int) -> List[List[int]]:
         res = []
     
