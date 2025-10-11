@@ -2,19 +2,22 @@ class Solution:
     # Sliding Window + Hashmap Solution - TC: O(n), SC: O(1)
     def totalFruit(self, fruits: List[int]) -> int:
         fruit_map = defaultdict(int)
+        res = 0
 
         l = 0
         for r in range(len(fruits)):
             fruit_map[fruits[r]] += 1
 
-            if len(fruit_map) > 2:
+            while len(fruit_map) > 2:
                 # remove the leftmost element from the map
                 fruit_map[fruits[l]] -= 1
                 if fruit_map[fruits[l]] == 0:
                     fruit_map.pop(fruits[l])
+                # increment left pointer
                 l += 1
+            res = max(res, r - l + 1)
 
-        return r - l + 1
+        return res
 
     # Brute Force Solution - TC: O(n^2), SC: O(1)
     def totalFruit2(self, fruits: List[int]) -> int:
