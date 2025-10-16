@@ -1,12 +1,6 @@
 class Solution:
+    # TC: O(n), SC: O(1)
     def countGoodSubstrings(self, s: str) -> int:
-        # base case: len of s < 3
-        # substrings of fixed len 3
-        # if base case isn't reached:
-        # start at the third element and simply compare distinctness of all chars
-        if len(s) < 3:
-            return 0
-
         count = 0
         
         for i in range(2, len(s)):
@@ -14,5 +8,3 @@ class Solution:
                 count += 1
 
         return count
-
-        
