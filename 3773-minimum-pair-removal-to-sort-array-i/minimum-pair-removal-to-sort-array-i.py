@@ -1,9 +1,9 @@
 class Solution:
+    # TC: O(n^2), SC: O(n)
     def minimumPairRemoval(self, nums: List[int]) -> int:
         count = 0
-        flag = self.isSorted(nums)
 
-        while not flag:
+        while not self.isSorted(nums):
             min_adj_sum = float("inf")
             indices = [0] * 2
             for i in range(1, len(nums)):
@@ -23,7 +23,6 @@ class Solution:
             
             count += 1
             nums = new_nums
-            flag = self.isSorted(new_nums)
         
         return count
         
@@ -32,5 +31,3 @@ class Solution:
             if nums[i-1] > nums[i]:
                 return False
         return True
-
-    
