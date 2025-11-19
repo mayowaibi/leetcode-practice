@@ -5,8 +5,8 @@
 #         self.left = left
 #         self.right = right
 
-# Pre order traversal: Root, Left, Right
 class Solution:
+    # Recursive DFS Pre-Order Traversal: Root, Left, Right
     # TC: O(n), SC: O(n)
     def flatten(self, root: Optional[TreeNode]) -> None:
         """
@@ -18,23 +18,20 @@ class Solution:
         # 3. create a new tree with root as first node in list, 
         # root = [1]
         # 4. makes each subseq. element in list a right child of each node in the new tree
+
         elements = []
         def dfs(node):
             if not node:
                 return
             
-            elements.append(node.val)
+            elements.append(node)
             dfs(node.left)
             dfs(node.right)
         
         dfs(root)
-        if len(elements) == 0:
-            return
-        # [1, 2, 3, 4, 5, 6]
-        # [1, null, 2, null, 3, null, 4, null, 5]
 
         curr = root
-        curr.left = None
-        for v in elements[1:]:
-            curr.right = TreeNode(v, None, None)
+        for i in range(len(elements)-1):
+            curr.left = None
+            curr.right = elements[i+1]
             curr = curr.right
